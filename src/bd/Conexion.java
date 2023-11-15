@@ -4,19 +4,30 @@
  */
 package bd;
 
-import com.sun.jdi.connect.spi.Connection;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import modelo.Pelicula;
+
 
 
 /**
  *
- * @author Acer
+ * @author SrE
  */
 public class Conexion {
     Connection conexion= null;
+    String PUERTO = "3308";
+    String BD = "moviesDB";
     void abrir(){
-        try {
-            Class.forName("jdbc.mysql.");
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            //conexion = DriverManager.getConnection("jdbc:mysql://localhost:"+PUERTO+"/moviesDB","root","");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:" + PUERTO + "/"+BD+"",
+                                                "root","");
+            System.out.println("Conexion éxitosa");
         } catch (Exception e) {
+            System.out.println("Error: " + e);
         }
     }
     
