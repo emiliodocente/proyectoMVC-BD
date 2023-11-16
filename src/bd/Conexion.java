@@ -31,5 +31,53 @@ public class Conexion {
         }
     }
     
+         public void createPelicula(Pelicula pelicula){
+        this.abrir();
+        try {
+            String sql = "INSERT INTO `movie`(`nombre`, `director`, `anio`) VALUES (?,?,?)";
+            PreparedStatement ps = conexion.prepareStatement(sql); 
+            
+            ps.setString(1, pelicula.getNombre());
+            ps.setString(2, pelicula.getNomDirector());
+            ps.setInt(3, pelicula.getAnio());
+                      
+            ps.executeUpdate();
+            
+            System.out.println("agregado");
+        } catch (Exception e) {
+            
+            
+        }
+        
+    }
+    public void readPelicula(){
+        
+    }
+    public void updatePelicula(Pelicula pelicula, int idBuscado){
+        this.abrir();
+        try {
+            String sql = "UPDATE `movie` SET `nombre`=? WHERE `id`=?";
+            PreparedStatement ps = conexion.prepareStatement(sql); 
+            
+            ps.setString(1, pelicula.getNombre());
+            
+            ps.setInt(2, idBuscado);
+                      
+            ps.executeUpdate();
+            
+            System.out.println("modificado");
+        } catch (Exception e) {
+            
+            
+        }
+        
+        
+    }
+    public void deletePelicula(){
+        
+    }
+
+    }
+    
     
 }
